@@ -239,12 +239,12 @@ body{ background:#bebebe url(bg.gif);}
 .remember_me{}
 .remember_me label{ width:auto; padding-right:10px;}
 .remember_me input{ width:15px;}
-.error_info{ margin-top:20px; height:200px; line-height:200px; mborder-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;background: #fff;margin-bottom: 40px;box-shadow: 0px 1px 2px #999; padding:100px 200px; font-size:40px; font-weight:bold; color:#69c;}
-.error_test{ padding-left:300px;}
-.error_401{ background:#fff url(401.png) no-repeat 100px center;}
-.error_403{ background:#fff url(403.png) no-repeat 100px center;}
-.error_404{ background:#fff url(404.png) no-repeat 230px center;}
-.error_500{ background:#fff url(500.png) no-repeat 100px center;}
+.error_info{ margin-top:20px; height:200px; line-height:200px; mborder-radius: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;-khtml-border-radius: 5px;background: #fff;margin-bottom: 40px;box-shadow: 0px 1px 2px #999; padding:100px 100px; font-size:40px; font-weight:bold; color:#69c;}
+.error_test{ padding-left:400px;}
+.error_401{ background:#fff url(401.png) no-repeat 150px center;}
+.error_403{ background:#fff url(403.png) no-repeat 150px center;}
+.error_404{ background:#fff url(404.png) no-repeat 150px center;}
+.error_500{ background:#fff url(500.png) no-repeat 150px center;}
 
 /*flash notice*/
 div#flash-notice{ width:100px;height:24px;text-align:center;position:fixed;background-color:red;color:#fff;top:0px;right:0px;display:none;}
