@@ -35,7 +35,7 @@ start() {
     exit 1
   else
     if [ `whoami` = root ]; then
-      sudo -u fangxiang -H bash -l -c "nohup bundle exec unicorn $DAEMON_OPTS  > /dev/null  2>&1 &"
+      sudo -u root -H bash -l -c "nohup bundle exec unicorn $DAEMON_OPTS  > /dev/null  2>&1 &"
       echo "$DESC started"
     fi
   fi
