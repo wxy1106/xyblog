@@ -25,8 +25,7 @@ gem 'elasticsearch'
 
 # Production requirements
 group :production do
-  gem 'zbatery'
-  # gem 'rainbows'
+	gem 'unicorn'
 end
 
 # Development requirements
