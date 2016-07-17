@@ -7,7 +7,7 @@ RobbinSite.controllers do
   end
   
   get :index do
-    @blogs = Blog.where('id != 1').order('id DESC').page(params[:page])
+    @blogs = Blog.order('id DESC').page(params[:page])
     render 'home/index'
   end
 
