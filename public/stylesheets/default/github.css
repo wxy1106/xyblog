@@ -250,6 +250,7 @@ img {
   white-space: nowrap;
   border: 1px solid #eaeaea;
   background-color: #f8f8f8;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   border-radius: 3px; }
 
 .con .text pre code {
@@ -272,7 +273,7 @@ img {
 .con .text pre {
   background-color: #f8f8f8;
   border: 1px solid #cccccc;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 19px;
   overflow: auto;
   padding: 6px 10px;
