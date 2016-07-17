@@ -52,7 +52,7 @@ APP_CONFIG = YAML.load_file(File.expand_path("#{PADRINO_ROOT}/config", __FILE__)
 # initialize memcache and ActiveRecord Cache
 Dalli.logger = logger
 APP_CACHE = ActiveSupport::Cache::DalliStore.new("127.0.0.1")
-CACHE_PREFIX = "robbin"
+CACHE_PREFIX = "nebula"
 SecondLevelCache.configure do |config|
   config.cache_store = APP_CACHE
   config.logger = logger
