@@ -31,6 +31,7 @@ body{ background:#bebebe url(bg.gif);}
 /*left*/
 .left{ width:720px; margin-right:20px; float:left; padding-top:20px;}
 .left h3{font-size:26px;margin-bottom: 10px;font-weight: bold;color: #fff; text-shadow:#999 1px 1px 0;}
+.left h3.search-prompt{font-size:26px;margin-top:15px;font-weight: bold;color: red; text-shadow:#999 1px 1px 0;}
 .left h3 span{ color:#666; text-shadow:none;}
 .left h3 a.tag span{color: #B77B1B;}
 .left h3 a.tag:hover span{color: #fff;}
