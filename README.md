@@ -1,43 +1,93 @@
-# Robbin's website  
+## 简介
+xyblog是一个基于ruby的开源博客程序，采用markdown编辑器，提供后台管理功能，集成微博登录和分享接口，比较有趣。
 
-<http://robbinfan.com>
+个人网站：[https://www.nebula.pub](https://nebula.pub)
 
-This is my personal website project.
+## 系统要求
+- git 2.0.0
+- ruby 1.9+
+- mysql 5.6，不推荐5.7（由于新版一些特性，部署过程会报错）
+- memcached 缓存系统
+- elasticsearch 搜索引擎
+- nginx 代理服务器
 
-## System requirements
+## 部署过程
+#### 安装rubygem
 
-* ruby 1.9, recommend 1.9 p327 version
-* MySQL 5.x, you should set utf-8 default encoding utf-8 at `my.cnf`, like this:
+```bash
+$ cd xyblog_dir
+$ gem install bundle
+$ bundle install
+```
 
-        [client]   # on 5.0 or 5.1
-        default-character-set=utf8
-        [mysqld]
-        default-character-set=utf8 
+如果有连接问题，考虑修改Gemfile中source 为```https://gems.ruby-china.org```
 
-        [mysqld]   # on 5.5
-        collation-server = utf8_unicode_ci
-        init-connect='SET NAMES utf8'
-        character-set-server = utf8
+#### 配置database.yml
 
-* memcached
-* nginx as web server, `config/nginx.conf` is my nginx configuration snippet.
+```bash
+$ cp config/database.example.yml config/database.yml
+$ vim config/database.yml
+```
 
-## Install
-1. run `bundle install`
-2. copy `config/app_config.example.yml` to `config/app_config.yml` and copy `config/database.example.yml` to `config/database.yml`
-3. modify database config for your need.
-4. create database match your database.yml and start your database.
-5. run `bundle exec rake secret` to generate session secret key and fill it in app_config.
-6. run `bundle exec rake ar:migrate` to setup database schema.
-7. run `bundle exec rake db:seed` to generate admin user.
-8. start memcached with `memcached -d`.
-9. run `bundle exec thin start` for development environment and run `./zbatery.sh start` for production environment.
+需要修改database, username, password，其他可保持默认
 
-## Run on Windows
+#### 配置app_config.yml
 
-remove such lines in `Gemfile` and run with thin.
+```bash
+$ bundle exec rake secret
+$ cp config/app_config.example.yml config/app_config.yml
+$ vim config/app_config.yml
+```
 
-    gem 'kgio'
-    gem 'zbatery'
+session_secret 修改为 rake secret的的结果，开启搜索功能请将blog_search值改为true，其他参数按需要需要修改。
 
-## MIT License
+#### 数据库
+手动创建数据库
+
+```bash
+$ bundle exec rake ar:migrate
+$ bundle exec rake db:seed
+```
+#### 配置unicorn
+
+```bash
+$ vim config/unicorn.rb
+```
+
+修改app_dir为项目目录，修改worker_processes为逻辑cpu个数，可通过```$ cat /proc/cpuinfo| grep "processor"| wc -l```查看
+
+```bash
+$ vim deploy/unicorn
+```
+
+修改APP_ROOT为项目目录，移动到init.d/
+
+```bash
+$ cp deploy/unicorn /etc/init.d/xyblog
+```
+#### 配置nginx
+
+```bash
+$ vim deploy/nginx.conf
+```
+
+修改worker_processes为逻辑cpu个数，修改server_name和root地址，并移动到nginx目录
+
+```bash
+$ cp deploy/nginx.conf /usr/local/nginx/conf/nginx.conf
+```
+
+## 启动程序
+
+```bash
+$ memcached -d
+$ /etc/init.d/mysql start
+$ /etc/init.d/xyblog start
+$ /usr/local/nginx/sbin/nginx
+```
+
+最后切换用户启动 elasticsearch
+```bash
+$ cd elasticsearch-$version
+$ ./bin/elasticsearch -d
+```
