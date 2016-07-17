@@ -1,7 +1,7 @@
 ## 简介
 xyblog是一个基于ruby的开源博客程序，采用markdown编辑器，提供后台管理功能，集成微博登录和分享接口，比较有趣。
 
-个人网站：[https://www.nebula.pub](https://nebula.pub)
+个人网站：[http://www.nebula.pub](http://nebula.pub)
 
 ## 系统要求
 - git 2.0.0
