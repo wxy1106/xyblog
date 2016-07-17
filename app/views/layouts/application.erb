@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0">
     <title><%= @title ? "#{@title} - #{APP_CONFIG['site_title']}": APP_CONFIG['site_title'] %></title>
     <meta name="description" content="<%= @description || APP_CONFIG['site_description'] %>">
-    <meta name="author" content="Robbin Fan">
+    <meta name="author" content="Nebula">
     <link href="/rss" rel="alternate" title="<%= APP_CONFIG['site_title'] %>" type="application/rss+xml" />
     <%= stylesheet_link_tag 'default/document', 'default/content' %>
     <%= yield_content :stylesheets %>
@@ -67,7 +67,7 @@
     <%= yield_content :javascripts %>
     <script type="text/javascript">
       // $('form#cse-search-box button#search-button').click(function(){
-      //   window.open('http://guge.io/#q=' + $('form#cse-search-box input#search-box').val() + '+site:robbinfan.com');
+      //   window.open('http://guge.io/#q=' + $('form#cse-search-box input#search-box').val() + '+site:nebula.pub');
       //   return false;
       // });
       <% if flash[:notice] %>
