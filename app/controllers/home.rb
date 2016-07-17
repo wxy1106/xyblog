@@ -13,13 +13,18 @@ RobbinSite.controllers do
 
   #性能限制暂时不能使用elasticsearch
   get :search do
-    # client = Elasticsearch::Client.new log: true
-    # raw_result = client.search index: 'robbin_site', body: { query: { match: { _all: params[:q] } } }
-    # blog_ids = []
-    # raw_result['hits']['hits'].each do |search_id|
-    #   blog_ids << search_id['_id'].to_i
-    # end
     blog_ids = []
+    if APP_CONFIG["blog_search"]
+      client = Elasticsearch::Client.new log: true
+      Blog.all.each do |blog|
+        client.index index: 'xyblog', type: 'article', id: blog.id, body: {title: blog.title, content: blog.content}
+      end
+      raw_result = client.search index: 'xyblog', body: { query: { match: { _all: params[:q] } } }
+      blog_ids = []
+      raw_result['hits']['hits'].each do |search_id|
+        blog_ids << search_id['_id'].to_i
+      end
+    end
     @blogs = Blog.find(blog_ids)
     render 'home/search'
   end
