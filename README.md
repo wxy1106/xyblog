@@ -1,7 +1,7 @@
 ## 简介
 xyblog是一个基于ruby的开源博客程序，采用markdown编辑器，提供后台管理功能，集成微博登录和分享接口，比较有趣。
 
-个人网站：[http://www.nebula.pub](http://nebula.pub)
+个人网站：[http://www.nebula.pub](http://www.nebula.pub)
 
 ## 系统要求
 - git 2.0.0
@@ -20,58 +20,70 @@ $ gem install bundle
 $ bundle install
 ```
 
-如果有连接问题，考虑修改Gemfile中source 为```https://gems.ruby-china.org```
+如果有连接问题，可将Gemfile中第一行替换为`source 'https://gems.ruby-china.org'`
+详细参考[Ruby China](https://gems.ruby-china.org/)
 
 #### 配置database.yml
 
 ```bash
 $ cp config/database.example.yml config/database.yml
-$ vim config/database.yml
 ```
 
-需要修改database, username, password，其他可保持默认
+修改`config/database.yml`文件
+- `database`：数据库名
+- `username`：数据库用户
+- `password`：用户密码
+- 其他可保持默认
 
 #### 配置app_config.yml
 
 ```bash
-$ bundle exec rake secret
 $ cp config/app_config.example.yml config/app_config.yml
-$ vim config/app_config.yml
 ```
 
-session_secret 修改为 rake secret的的结果，开启搜索功能请将blog_search值改为true，其他参数按需要需要修改。
+修改`config/app_config.yml`
+- `session_secret`：执行`$ bundle exec rake secret`的结果
+- `blog_search`：是否开启全文检索功能
+- 其他参数根据需求修改
 
-#### 数据库
-手动创建数据库
+#### 配置数据库
+进入mysql手动创建数据库
+
+```sql
+mysql> create database xyblog;
+```
+
+执行迁移
 
 ```bash
 $ bundle exec rake ar:migrate
 $ bundle exec rake db:seed
 ```
+
 #### 配置unicorn
+修改`config/unicorn.rb`
+- `app_dir`：程序目录
+- `worker_processes`：一般为cpu核数
 
-```bash
-$ vim config/unicorn.rb
-```
+可执行`$ cat /proc/cpuinfo|grep "processor"|wc -l`查看
 
-修改app_dir为项目目录，修改worker_processes为逻辑cpu个数，可通过```$ cat /proc/cpuinfo| grep "processor"| wc -l```查看
+修改`deploy/unicorn`
+- `APP_ROOT`：程序目录
 
-```bash
-$ vim deploy/unicorn
-```
-
-修改APP_ROOT为项目目录，移动到init.d/
+移动文件到/etc/init.d/
 
 ```bash
 $ cp deploy/unicorn /etc/init.d/xyblog
 ```
+
 #### 配置nginx
 
-```bash
-$ vim deploy/nginx.conf
-```
+修改`deploy/nginx.conf`
+- `worker_processes`：一般为cpu核数
+- `server_name`：域名
+- `root`：程序public目录
 
-修改worker_processes为逻辑cpu个数，修改server_name和root地址，并移动到nginx目录
+移动到nginx config目录
 
 ```bash
 $ cp deploy/nginx.conf /usr/local/nginx/conf/nginx.conf
