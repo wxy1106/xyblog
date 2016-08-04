@@ -1,6 +1,6 @@
 <% cache("#{CACHE_PREFIX}/rss/all") do -%>
 <?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0"  xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title><%= APP_CONFIG['site_title'] %></title>
     <description><%= APP_CONFIG['site_description'] %></description>
@@ -22,4 +22,4 @@
     <% end %>
   </channel>
 </rss>
-<% end -%>
+<% end %>
