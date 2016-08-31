@@ -162,6 +162,7 @@ body{ background:#bebebe url(bg.gif);}
 .submit:hover{background:url(x.png) no-repeat 0 -490px; cursor:pointer;}
 /*comment*/
 .con .comment{ padding:20px 0; }
+.con .comment_fix{ padding:20px 40px;}
 .con .comment h1{ font-size:20px;font-weight:bold;}
 .con .comment h2{ font-size:18px;font-weight:bold; border-bottom:2px #ddd solid; padding-bottom:3px;margin-bottom:10px; }
 .con .comment h2 span{ font-size:22px; margin-right:5px;}
