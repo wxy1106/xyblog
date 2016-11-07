@@ -4,6 +4,7 @@ log/**/*
 tmp/**/*
 bin/*
 .bundle/
+.idea/
 config/database.yml
 config/app_config.yml
 public/uploads
